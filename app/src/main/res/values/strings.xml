@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">notice</string>
+    <string name="please_press_to_continue">Please Press To Continue</string>
+    <string name="def">default</string>
+    <string name="create_note">create note</string>
+    <string name="update_note">update note</string>
+    <string name="title_empty">Please fill the title field</string>
+    <string name="message_empty">Please fill the message field</string>
+    <string name="title_hint">Please Create Title</string>
+    <string name="message_hint">Please Fill The Message</string>
+    <string name="under_construction">Event Is Under Construction</string>
+    <string name="q_delete_all_notes">Delete All Notes?</string>
+    <string name="notes_were_deleted">All Notes Were Successfully Deleted</string>
+    <string name="notes_was_added">Notes Was Successfully Added</string>
+    <string name="notes_was_updated">Notes Was Successfully Updated</string>
+    <string name="delete_all_notes">Delete All Notes</string>
+    <string name="to_list_interface">To List Interface</string>
+    <string name="to_card_interface">To Card Interface</string>
+    <string name="change_interface">Change Interface</string>
+
+    <string name="grid_layout_manager">GridLayoutManager</string>
+    <string name="linear_layout_manager">LinearLayoutManager</string>
+</resources>

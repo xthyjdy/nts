@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@+id/menugroup1" >
+        <item
+            android:title="@string/change_interface"
+            app:showAsAction="never">
+
+            <menu>
+                <item
+                    android:id="@+id/to_list_interface"
+                    android:title="@string/to_list_interface"/>
+                <item
+                    android:id="@+id/to_card_interface"
+                    android:title="@string/to_card_interface"/>
+            </menu>
+
+        </item>
+        <item
+            android:id="@+id/top_bar_popap_delete_all_notes"
+            android:title="@string/delete_all_notes"
+            app:showAsAction="never"
+            android:icon="@drawable/ic_delete_all"/>
+    </group>
+</menu>
