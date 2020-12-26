@@ -35,4 +35,8 @@ ext {
     cardview = '1.0.0'
     recyclerview = '1.1.0'
     recyclerview_selection = '1.1.0-rc03'
+    dagger = '2.30'
+    dagger_compiler = '2.30'
+    glide = '4.11.0'
+    glide_compiler = '4.11.0'
 }
