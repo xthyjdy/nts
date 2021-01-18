@@ -1,4 +1,4 @@
-package vch.proj.view_models;
+package vch.proj.viewmodels;
 
 import android.app.Application;
 
@@ -7,12 +7,12 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import vch.proj.entities.Note;
+import vch.proj.entities.NoteModel;
 import vch.proj.repositories.NoteRepository;
 
 public class NotesViewModel extends AndroidViewModel {
     private NoteRepository mRepository;
-    private LiveData<List<Note>> mNotes;
+    private LiveData<List<NoteModel>> mNotes;
 
     public NotesViewModel(Application application) {
         super(application);
@@ -20,20 +20,20 @@ public class NotesViewModel extends AndroidViewModel {
         mNotes = mRepository.getNotes();
     }
 
-    public LiveData<List<Note>> getNotes() {
+    public LiveData<List<NoteModel>> getNotes() {
         return mNotes;
     }
 
-    public void insert(Note note) {
-        mRepository.insert(note);
+    public void insert(NoteModel noteModel) {
+        mRepository.insert(noteModel);
     }
 
-    public void update(Note note) {
-        mRepository.update(note);
+    public void update(NoteModel noteModel) {
+        mRepository.update(noteModel);
     }
 
-    public void delete(Note note) {
-        mRepository.delete(note);
+    public void delete(NoteModel noteModel) {
+        mRepository.delete(noteModel);
     }
 
     public void deleteAll() {

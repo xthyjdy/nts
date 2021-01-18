@@ -5,14 +5,16 @@ import android.content.Context;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import vch.proj.dao.NoteDao;
-import vch.proj.entities.Note;
+import javax.inject.Singleton;
 
-@androidx.room.Database(entities = Note.class, version = 1, exportSchema = false)
+import vch.proj.dao.NoteDao;
+import vch.proj.entities.NoteModel;
+
+@Singleton
+@androidx.room.Database(entities = NoteModel.class, version = 1, exportSchema = false)
 public abstract class Database extends RoomDatabase {
     private static volatile Database instance;
     private static final int NUMBER_OF_THREAD = 5;

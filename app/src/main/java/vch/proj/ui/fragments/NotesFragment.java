@@ -1,4 +1,4 @@
-package vch.proj.fragments;
+package vch.proj.ui.fragments;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,11 +28,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 import vch.proj.R;
-import vch.proj.activities.NotesActivity;
-import vch.proj.entities.Note;
-import vch.proj.view_models.NotesViewModel;
-
-import static vch.proj.classes.Helper.*;
+import vch.proj.ui.activities.NotesActivity;
+import vch.proj.entities.NoteModel;
+import vch.proj.viewmodels.NotesViewModel;
 
 public class NotesFragment extends Fragment {
     private RecyclerView mRecyclerView;
@@ -65,10 +63,10 @@ public class NotesFragment extends Fragment {
         mAdapter = new NoteAdapter(getActivity());
         mRecyclerView.setAdapter(mAdapter);
         if (null != mNotesViewModel) {
-            mNotesViewModel.getNotes().observe(getActivity(), new Observer<List<Note>>() {
+            mNotesViewModel.getNotes().observe(getActivity(), new Observer<List<NoteModel>>() {
                 @Override
-                public void onChanged(List<Note> notes) {
-                    mAdapter.setNotes(notes);
+                public void onChanged(List<NoteModel> noteModels) {
+                    mAdapter.setNotes(noteModels);
                 }
             });
         }
@@ -108,7 +106,7 @@ public class NotesFragment extends Fragment {
     }
 
     public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
-        private List<Note> mNotes;
+        private List<NoteModel> mNoteModels;
         private Context mContext;
 
         public NoteAdapter(Context context) {
@@ -125,33 +123,33 @@ public class NotesFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder holder, int position) {
-            Note note = mNotes.get(position);
-            holder.bind(note);
+            NoteModel noteModel = mNoteModels.get(position);
+            holder.bind(noteModel);
         }
 
         @Override
         public int getItemCount() {
-            if (null == mNotes) {
+            if (null == mNoteModels) {
                 return 0;
             }
-            return mNotes.size();
+            return mNoteModels.size();
         }
 
-        public void setNotes(List<Note> notes) {
-            mNotes = notes;
+        public void setNotes(List<NoteModel> noteModels) {
+            mNoteModels = noteModels;
             notifyDataSetChanged();
         }
 
-        public Note getNote(int position) {
-            return mNotes.get(position);
+        public NoteModel getNote(int position) {
+            return mNoteModels.get(position);
         }
 
         public void refresh() {
             notifyDataSetChanged();
         }
 
-        public List<Note> getNotes() {
-            return mNotes;
+        public List<NoteModel> getNotes() {
+            return mNoteModels;
         }
 
         public class NoteViewHolder extends RecyclerView.ViewHolder {
@@ -162,12 +160,12 @@ public class NotesFragment extends Fragment {
                 mTitle = (TextView) itemView.findViewById(R.id.title_text_view);
             }
 
-            public void bind(Note note) {
-                mTitle.setText(note.getTitle().toString());
+            public void bind(NoteModel noteModel) {
+                mTitle.setText(noteModel.getTitle().toString());
                 mTitle.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mCallbacks.saveNote(note);
+                        mCallbacks.saveNote(noteModel);
                     }
                 });
             }
@@ -278,9 +276,9 @@ public class NotesFragment extends Fragment {
     public interface Callbacks {
         /**
          * Save Note - send Note to NoteFragment
-         * @param note instance of @{@link Note}
+         * @param noteModel instance of @{@link NoteModel}
          */
-        void saveNote(Note note);
+        void saveNote(NoteModel noteModel);
     }
 
     /**
@@ -288,10 +286,10 @@ public class NotesFragment extends Fragment {
      */
     private void addTestModels() {
         for (int i = 0; i < 3; i++) {
-            Note note = new Note();
-            note.setTitle("title_" + i);
-            note.setMessage("message_" + i);
-            mNotesViewModel.insert(note);
+            NoteModel noteModel = new NoteModel();
+            noteModel.setTitle("title_" + i);
+            noteModel.setMessage("message_" + i);
+            mNotesViewModel.insert(noteModel);
         }
     }
 }

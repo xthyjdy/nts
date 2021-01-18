@@ -1,4 +1,4 @@
-package vch.proj.classes;
+package vch.proj.helpers;
 
 import android.util.Log;
 

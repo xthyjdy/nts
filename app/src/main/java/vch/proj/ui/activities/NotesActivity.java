@@ -1,21 +1,19 @@
-package vch.proj.activities;
+package vch.proj.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import vch.proj.R;
-import vch.proj.entities.Note;
-import vch.proj.fragments.NoteFragment;
-import vch.proj.fragments.NotesFragment;
-import vch.proj.view_models.NotesViewModel;
+import vch.proj.entities.NoteModel;
+import vch.proj.ui.fragments.NoteFragment;
+import vch.proj.ui.fragments.NotesFragment;
+import vch.proj.viewmodels.NotesViewModel;
 
-import static vch.proj.classes.Helper.l;
+import static vch.proj.helpers.Helper.l;
 
 /**
  * Main Recycle View Activity
@@ -53,8 +51,8 @@ public class NotesActivity extends BaseActivity
     }
 
     @Override
-    public void saveNote(Note note) {
-        Fragment fragment = NoteFragment.newInstance(note);
+    public void saveNote(NoteModel noteModel) {
+        Fragment fragment = NoteFragment.newInstance(noteModel);
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_container, fragment)
@@ -62,14 +60,14 @@ public class NotesActivity extends BaseActivity
     }
 
     @Override
-    public void itemProcessing(Note note, boolean actionAdd) {
+    public void itemProcessing(NoteModel noteModel, boolean actionAdd) {
         if (actionAdd) {
-            mNotesViewModel.insert(note);
+            mNotesViewModel.insert(noteModel);
             Toast.makeText(this,
                     getResources().getString(R.string.notes_was_added),
                     Toast.LENGTH_SHORT).show();
         } else {
-            mNotesViewModel.update(note);
+            mNotesViewModel.update(noteModel);
             Toast.makeText(this,
                     getResources().getString(R.string.notes_was_updated),
                     Toast.LENGTH_SHORT).show();

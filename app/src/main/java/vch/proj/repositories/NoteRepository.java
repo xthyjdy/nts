@@ -9,11 +9,11 @@ import java.util.List;
 
 import vch.proj.dao.NoteDao;
 import vch.proj.db.Database;
-import vch.proj.entities.Note;
+import vch.proj.entities.NoteModel;
 
 public class NoteRepository {
     private NoteDao mDao;
-    private LiveData<List<Note>> mNotes;
+    private LiveData<List<NoteModel>> mNotes;
 
     public NoteRepository(Application application) {
         Database db = Database.getDatabase(application);
@@ -21,27 +21,27 @@ public class NoteRepository {
         mNotes = mDao.getNotes();
     }
 
-    public LiveData<List<Note>> getNotes() {
+    public LiveData<List<NoteModel>> getNotes() {
         return mNotes;
     }
 
-    public void insert(Note note) {
-        new AsyncInsert(mDao).execute(note);
+    public void insert(NoteModel noteModel) {
+        new AsyncInsert(mDao).execute(noteModel);
     }
 
-    public void update(Note note) {
-        new AsyncUpdate(mDao).execute(note);
+    public void update(NoteModel noteModel) {
+        new AsyncUpdate(mDao).execute(noteModel);
     }
 
-    public void delete(Note note) {
-        new AsyncDelete(mDao).execute(note);
+    public void delete(NoteModel noteModel) {
+        new AsyncDelete(mDao).execute(noteModel);
     }
 
     public void deleteAll() {
         new AsyncDeleteAll(mDao).execute();
     }
 
-    private class AsyncInsert extends AsyncTask<Note, Void, Void> {
+    private class AsyncInsert extends AsyncTask<NoteModel, Void, Void> {
         private NoteDao dao;
 
         public AsyncInsert(NoteDao noteDao) {
@@ -49,13 +49,13 @@ public class NoteRepository {
         }
 
         @Override
-        protected Void doInBackground(Note... notes) {
-            dao.insert(notes[0]);
+        protected Void doInBackground(NoteModel... noteModels) {
+            dao.insert(noteModels[0]);
             return null;
         }
     }
 
-    private class AsyncDelete extends AsyncTask<Note, Void, Void> {
+    private class AsyncDelete extends AsyncTask<NoteModel, Void, Void> {
         private NoteDao dao;
 
         public AsyncDelete(NoteDao noteDao) {
@@ -63,8 +63,8 @@ public class NoteRepository {
         }
 
         @Override
-        protected Void doInBackground(Note... notes) {
-            dao.delete(notes[0]);
+        protected Void doInBackground(NoteModel... noteModels) {
+            dao.delete(noteModels[0]);
             return null;
         }
     }
@@ -83,7 +83,7 @@ public class NoteRepository {
         }
     }
 
-    private class AsyncUpdate extends AsyncTask<Note, Void, Void> {
+    private class AsyncUpdate extends AsyncTask<NoteModel, Void, Void> {
         private NoteDao dao;
 
         public AsyncUpdate(NoteDao noteDao) {
@@ -91,8 +91,8 @@ public class NoteRepository {
         }
 
         @Override
-        protected Void doInBackground(Note... notes) {
-            dao.update(notes[0]);
+        protected Void doInBackground(NoteModel... noteModels) {
+            dao.update(noteModels[0]);
             return null;
         }
     }

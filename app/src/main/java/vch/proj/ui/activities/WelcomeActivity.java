@@ -1,11 +1,8 @@
-package vch.proj.activities;
+package vch.proj.ui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-
-import vch.proj.fragments.WelcomeFragment;
+import vch.proj.ui.fragments.WelcomeFragment;
 
 /**
  * Start Page Activity

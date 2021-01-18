@@ -1,4 +1,4 @@
-package vch.proj.fragments;
+package vch.proj.ui.fragments;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -20,10 +20,10 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import vch.proj.R;
-import vch.proj.activities.NotesActivity;
+import vch.proj.ui.activities.NotesActivity;
 
 import static android.content.Context.WINDOW_SERVICE;
-import static vch.proj.classes.Helper.l;
+import static vch.proj.helpers.Helper.l;
 
 public class WelcomeFragment extends Fragment {
     @Override

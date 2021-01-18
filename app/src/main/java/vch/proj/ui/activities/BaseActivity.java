@@ -1,4 +1,4 @@
-package vch.proj.activities;
+package vch.proj.ui.activities;
 
 import android.os.Bundle;
 
@@ -9,9 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import vch.proj.R;
-import vch.proj.fragments.NotesFragment;
 
-import static vch.proj.classes.Helper.l;
+import static vch.proj.helpers.Helper.l;
 
 /**
  * Main Abstract Activity
@@ -52,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         if (!fragment.isAdded()) {
-            fragmentManager.beginTransaction().add(R.id.main_container, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit();
         }
     }
 }
